@@ -1,4 +1,4 @@
-# Maven Tips & Tricks
+# Maven - Notes, Tips & Snippets
 Maven Tips &amp; Tricks
 
 ##Create Project Structure
@@ -24,6 +24,20 @@ This helps in configuring
 
 All these information goes in to ```pom.xml```
 
+### Sample Snippets
+
+####Snippet for generating WebApp
+
+SYNTAX
+```
+mvn archetype:generate -DgroupId={GROUPID} -DartifactId={PROJECT NAME} -DarchetypeArtificatId=maven-archetype-webapp -DinteractiveMode=false
+```
+SAMPLE
+````
+mvn archetype:generate -DgroupId=xyz.thiru.webapp -DartifactId=MyWebApp -DarchetypeArtificatId=maven-archetype-webapp -DinteractiveMode=false
+```
+
+
 
 ## Maven Build Process
 
@@ -41,6 +55,7 @@ Build lifecycle consisists of different phases. Some fo the phases have default 
 * package - Creates jar/war/ear files based on the configuration.
 * install - Installs the generated package into local repository(.m2 folder)
 * deploy - Deploys the project to repository for other users to use. It doesn't deploy to App Server.
+* clean - Deletes the target folder.
 
 Compile Phase
 
@@ -70,5 +85,40 @@ mvn install
 
 Downloads the dependencies from the central repository & installs your project to the local repository.
 
+```
+mvn clean
+```
+
+Deletes the target folder. Usually ``` mvn clean install``` executed together.
 
 ## Adding Dependencies
+Pull up the dependency from central repository. 
+
+### Search for Dependencies
+
+Search for Dependencies in [MVN Repository](www.mvnrepository.com)
+
+```
+<dependency>
+	<groupId>org.slf4j</groupId>
+	<artifactId>slf4j-api</artifactId>
+	<version>1.7.12</version>
+</dependency>
+```
+
+Add Scope based on your requirement
+
+```
+<scope>compile<scope>
+````
+
+## Scopes
+* compile - Default Scope
+* test
+* provided
+
+## Plugins
+Dependencies are for code. Plugins are for running you pom.xml.
+ * Compiler Plugin
+ * Server & Servlet Container Plugin
+ 
